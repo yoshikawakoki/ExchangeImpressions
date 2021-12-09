@@ -16,7 +16,8 @@
 　旅行やおでかけの計画時
 
 ## 設計書
-<...>
+  テーブル定義書： https://docs.google.com/spreadsheets/d/1jj0lgTBXlL9g0XIduAUeiRex-a6Ur52cVwiMAzDDwgs/edit#gid=856357510
+  詳細設計書： https://docs.google.com/spreadsheets/d/1_YMbfQ9tzyMuNJpUw1FfxoHg4AgIyzQFYmsbESI8OBo/edit#gid=2133469642
 
 ## チャレンジ要素一覧
 　https://docs.google.com/spreadsheets/d/1OaJqOzqTgGwmuVdu3iGoAc2XOQkiio_f5FyVdbIiAv4/edit?usp=sharing
