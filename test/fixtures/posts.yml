@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  genre_id: 1
+  place: MyString
+  image: MyText
+  body: MyString
+  evaluation: 1.5
+
+two:
+  user_id: 1
+  genre_id: 1
+  place: MyString
+  image: MyText
+  body: MyString
+  evaluation: 1.5
