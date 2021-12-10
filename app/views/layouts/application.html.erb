@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <header class="border-bottom">
+      <%= render "layouts/header" %>
+    </header>
     <%= yield %>
+    <footer class="border-top">
+      <%= render "layouts/footer" %>
+    </footer>
   </body>
 </html>
