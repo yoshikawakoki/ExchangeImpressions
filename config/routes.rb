@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   root to: "homes#top"
   
   #ユーザー
-  resources users, only: [:index, :show, :edit, :update] do
+  resources :users, only: [:index, :show, :edit, :update] do
     #フォロー、フォロワー
-    resources relationships, only: [:create, :destroy]
+    resources :relationships, only: [:create, :destroy]
     #フォロー一覧
     get "followings" => "relationships#followings", as: "followings"
     #フォロワー一覧
@@ -16,15 +16,14 @@ Rails.application.routes.draw do
   end
   
   #投稿
-  resources posts do
+  resources :posts do
     #コメント
-    resources post_comments, only: [:create]
+    resources :post_comments, only: [:create]
     #いいね
-    resources favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
   
   #ジャンル
-  resources genres, only: [:index, :create, :edit, :update, :destroy]
-  
+  resources :genres, only: [:index, :create, :edit, :update, :destroy]
   
 end
