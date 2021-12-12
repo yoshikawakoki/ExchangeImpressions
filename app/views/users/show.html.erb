@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <h2>ユーザー情報編集</h2>
+  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="row">
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="actions">
+        <%= f.submit "ユーザー情報更新" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
