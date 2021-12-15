@@ -75,6 +75,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubis (2.7.0)
     execjs (2.8.1)
     ffi (1.15.4)
@@ -111,6 +115,7 @@ GEM
     minitest (5.14.4)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    mysql2 (0.5.3)
     netrc (0.11.0)
     nio4r (2.5.8)
     nokogiri (1.12.5)
@@ -232,10 +237,12 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  dotenv-rails
   font-awesome-sass (~> 5.13)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  mysql2
   puma (~> 3.0)
   rails (~> 5.0.0)
   refile!
