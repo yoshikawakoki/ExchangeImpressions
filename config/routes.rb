@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
   end
   
-  #ジャンル
-  resources :genres, only: [:index, :create, :edit, :update, :destroy]
-  
+  #ハッシュタグ
+  get '/post/hashtag/:name', to: "posts#hashtag"
 end
