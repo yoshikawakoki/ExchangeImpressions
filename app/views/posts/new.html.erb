@@ -1,8 +1,52 @@
-<div class="container">
-  <div class="row">
+<div class="container, mx-auto">
+  <div class="row, text-center">
     <h2>新規投稿</h2>
   </div>
-  <div class="row">
-    
-  </div>
+  <%= form_with model: @post, local:true do |f| %>
+    <div class="row">
+      <div class="col-lg-7, mx-auto">
+        <table>
+          <tr>
+            <th>行った場所</th>
+            <th><%= f.text_field :place, size:"70x5" %></th>
+          </tr>
+          <tr>
+            <th>投稿画像</th>
+            <th><%= f.attachment_field :image, multiple:true %></th>
+          </tr>
+          <tr>
+            <th>評価</th>
+            <th>
+              #star.form-group
+              <%= f.label :evaluation %>
+              <%= f.hidden_field :evaluation, id: :review_star %>
+            </th>
+              javascript:
+                $('#star').raty({
+                  size: 36,
+                  starOff: "#{asset_path('star-off.png')}",
+                  starOn: "#{asset_path('star-on.png')}",
+                  starHalf: "#{asset_path('star-half.png')}",
+                  scoreName: 'review[evaluation]', # reviewカラムに保存するので忘れないように
+                  half: true, # ★の半分の入力を行う
+                });
+            
+          </tr>
+          <tr>
+            <th>本文</th>
+            <th><%= f.text_area :body, size:"70x40" %></th>
+          </tr>
+          <tr>
+            <th>ハッシュタグ</th>
+            <th><%= f.text_area :hashname, size:"70x7" %></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2, mx-auto">
+        <%= f.submit "新規投稿", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
 </div>

@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   has_many :post_hashtag_relations
   has_many :hashtags, through: :post_hashtag_relations
-  
-  
+  attachment :image
+
   #DBへのコミット直前に実施する
   after_create do
     post = Post.find_by(id: self.id)
@@ -18,7 +18,7 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
-  
+
   before_update do
     post = Post.find_by(id: id)
     #更新時にハッシュタグを一度消す
