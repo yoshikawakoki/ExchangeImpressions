@@ -1,25 +1,14 @@
-<div class="container m-5">
+<div class="container">
   <div class="row">
-    <%= render "posts/sidebar" %>
-
-    <div class="col-md-8 offset-md-1 text-center">
+    <div class="col-lg-7, mx-auto">
       <h2>投稿一覧</h2>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <p>gazou</p>
-            <p>iine</p>
-            <p>comment</p>
-          </div>
-          <div class="col-md-4">
-            <p>gazou</p>
-          </div>
-          <div class="col-md-4">
-            <p>gazou</p>
-          </div>
+      <% @posts.each do |post| %>
+        <div class="col-md-4">
+          <%= attachment_image_tag post, :image %>
+          <p>iine</p>
+          <p>comment</p>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

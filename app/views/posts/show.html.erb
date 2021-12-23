@@ -1,14 +1,18 @@
-<div class="container m-5 text-center">
+<div class="container">
   <div class="row">
-    <p>行った場所</p>
-    <p>gazou</p>
-    <div id= 
-    <p>文章</p>
-    <p><%= render_with_hashtags(@post.caption) %></p>
-    <p>iine</p>
-    <p>comment</p>
+    <div class="col-lg-7, mx-auto">
+      <table>
+        <tr><%= @post.place %></tr>
+        <tr><%= attachment_image_tag @post, :image %></tr>
+        <tr>評価</tr>
+        <tr><%= @post.body %></tr>
+        <tr><%= render_with_hashtags(@post.caption) %></tr>
+        <tr>いいねテンプレートで持ってくる</tr>
+      </table>
+      
+    </div>
   </div>
   <div class="row">
-    <p>コメント追加</p>
+    <p>コメントテンプレートで持ってくる</p>
   </div>
 </div>

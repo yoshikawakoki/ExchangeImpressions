@@ -1,4 +1,4 @@
-<div class="container, mx-auto">
+<div class="container">
   <div class="row, text-center">
     <h2>新規投稿</h2>
   </div>
@@ -21,15 +21,7 @@
               <%= f.label :evaluation %>
               <%= f.hidden_field :evaluation, id: :review_star %>
             </th>
-              javascript:
-                $('#star').raty({
-                  size: 36,
-                  starOff: "#{asset_path('star-off.png')}",
-                  starOn: "#{asset_path('star-on.png')}",
-                  starHalf: "#{asset_path('star-half.png')}",
-                  scoreName: 'review[evaluation]', # reviewカラムに保存するので忘れないように
-                  half: true, # ★の半分の入力を行う
-                });
+              
             
           </tr>
           <tr>
