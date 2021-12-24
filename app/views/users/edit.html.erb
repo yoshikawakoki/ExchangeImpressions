@@ -4,7 +4,7 @@
       <h2>ユーザー情報編集</h2>
       <% form_with model: @user, local: true do |f| %>
         <div class="field">
-          <%= attachment_field :profile_image_id 
+          <%= attachment_field :profile_image_id %>
         </div>
         <div class="field">
           <%= f.label :name %>

@@ -8,6 +8,16 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update
+    redirect_to post_path(@post.id)
+  end
+
   def new
     @post = Post.new
   end
