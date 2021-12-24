@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7, mx-auto">
+      <h2>ユーザー一覧</h2>
+      <table>
+        <%= @users.each do |user| %>
+          <tr>
+            <th><%= attachment_image_tag user, :profile_image_id %></th>
+            <th><%= user.name %></th>
+            <th>フォロー数</th>
+            <th>フォロワー数</th>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
