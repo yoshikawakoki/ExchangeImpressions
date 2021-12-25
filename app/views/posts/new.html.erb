@@ -17,12 +17,18 @@
           <tr>
             <th>評価</th>
             <th>
-              #star.form-group
-              <%= f.label :evaluation %>
-              <%= f.hidden_field :evaluation, id: :review_star %>
+              <div id="evaluate_stars"></div>
             </th>
-              
-            
+            <script>
+              $('#evaluate_stars').raty({
+                size     : 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                scoreName: 'post[evaluation]',
+                half: true,
+              });
+            </script>
           </tr>
           <tr>
             <th>本文</th>
