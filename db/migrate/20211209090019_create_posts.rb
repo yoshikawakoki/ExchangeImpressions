@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :place, null: false
       t.text :image, null: false
       t.text :body, null: false
-      #t.float :evaluation, null: false
+      t.float :evaluation, null: false
 
       t.timestamps
     end

@@ -1,9 +1,15 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
   has_many :post_hashtag_relations
   has_many :hashtags, through: :post_hashtag_relations
   attachment :image
   
+  
+  #ユーザーが投稿をいいねしているかを判別するメソッド
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exisrs?
+  end
 
   #DBへのコミット直前に実施する
   after_create do

@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_12_17_061604) do
     t.string "place", null: false
     t.text "image", null: false
     t.text "body", null: false
+    t.float "evaluation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
