@@ -4,7 +4,9 @@
       <h2>投稿一覧</h2>
       <% @posts.each do |post| %>
         <div class="col-md-4">
-          <%= attachment_image_tag post, :image %>
+          <% @posts.post_images.each do |post_image| %>
+            <%= attachment_image_tag post_image, :image %>
+          <% end %>
           <p>iine</p>
           <p>comment</p>
         </div>

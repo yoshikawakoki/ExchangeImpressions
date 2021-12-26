@@ -25,18 +25,22 @@ class PostsController < ApplicationController
   def create
     @post =Post.new(post_params)
     @post.user_id = current_user.id
+    if @post.evaluation == nil
+      @post.evaluation = 0
+    end
     @post.save
+    #if params[:post][:hashname] != nil
     redirect_to post_path(@post.id)
   end
 
   def hashtag
-    @user = current_user
-    @tag = Hashtag.find_by(hashname: params[:name])
-    @posts = @tag.posts
+    @hashtag = Hashtag.find_by(hashname: params[:name])
+    @posts = @hashtag.posts
+    @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.posts.count}
   end
 
   private
   def post_params
-    params.require(:post).permit(:place, :body, :user_id, hashtag_ids: [], images: [])
+    params.require(:post).permit(:place, :body, :user_id, :evaluation, :hashbody, hashtag_ids: [], post_images_images: [])
   end
 end

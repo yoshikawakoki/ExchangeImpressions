@@ -3,9 +3,9 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_hashtag_relations
   has_many :hashtags, through: :post_hashtag_relations
-  attachment :image
-  
-  
+  has_many :post_images, dependent: :destroy
+  accepts_attachments_for :post_images, attachment: :image
+
   #ユーザーが投稿をいいねしているかを判別するメソッド
   def favorited_by?(user)
     favorites.where(user_id: user.id).exisrs?
@@ -13,10 +13,9 @@ class Post < ApplicationRecord
 
   #DBへのコミット直前に実施する
   after_create do
-    post = Post.find_by(id: self.id)
+    post = Post.find_by(id: id)
     #先頭に#のつく入力値を探し抽出する
-    hashtags = self.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-    post.hashtags = []
+    hashtags = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー０-９]+/)
     #mapで繰り返すことで複数のハッシュタグの保存をする
     hashtags.uniq.map do |hashtag|
       #作成しようとしているハッシュタグがすでに存在しているかを確認、なければ作成
@@ -30,8 +29,9 @@ class Post < ApplicationRecord
   before_update do
     post = Post.find_by(id: id)
     #更新時にハッシュタグを一度消す
+    #test1 #test2 => #sample1 #sample2 #sample2
     post.hashtags.clear
-    hashtags = self.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: tashtag.downcase.delete('#'))
       post.hashtags << tag

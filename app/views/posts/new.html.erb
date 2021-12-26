@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <th>投稿画像</th>
-            <th><%= f.attachment_field :image, multiple:true %></th>
+            <th><%= f.attachment_field :post_images_images, multiple: true %></th>
           </tr>
           <tr>
             <th>評価</th>
@@ -31,13 +31,12 @@
             </script>
           </tr>
           <tr>
-            <th>本文</th>
+            <th>感想</th>
             <th><%= f.text_area :body, size:"70x40" %></th>
           </tr>
           <tr>
             <th>ハッシュタグ</th>
-            <th><%= f.text_area :hashname, size:"70x7" %></th>
-          </tr>
+            <th><%= f.text_area :hashbody, size:"70x7" %></th>
         </table>
       </div>
     </div>
