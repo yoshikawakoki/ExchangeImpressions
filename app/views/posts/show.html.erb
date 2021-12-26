@@ -8,7 +8,18 @@
         </tr>
         <tr>
           <th>評価</th>
-          <th></th>
+          <th><div id="evaluate_stars"></div></th>
+          <script>
+            $('#evaluate_stars').raty({
+              size: 36,
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              readOnly: true,
+              score: <%= @post.evaluation %>,
+            });
+          </script>
         </tr>
       </table>
       <div>
@@ -22,8 +33,9 @@
       <div>
         <%= render_with_hashtags(@post.hashbody) %>
       </div>
-      <div>
-        いいねテンプレートで持ってくる
+      <div id="post_<%= @post.id %>">
+        <%# いいねボタン %>
+        <%= render "favorites/favorite", post: @post %>
       </div>
       <div>
         <p>コメントテンプレートで持ってくる</p>
