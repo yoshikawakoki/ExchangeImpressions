@@ -37,9 +37,20 @@
         <%# いいねボタン %>
         <%= render "favorites/favorite", post: @post %>
       </div>
-      <div>
-        <p>コメントテンプレートで持ってくる</p>
-      </div>
     </div>
+  </div>
+  <div class="row">
+    <h4>コメント(<%= @post.post_comments.count %>)</h4>
+  </div>
+  <div class="row">
+    <table class="post_comment_<%= @post.id %>">
+      <%= render "post_comments/post_comment", post: @post %>
+    </table>
+  </div>
+  <div class="row">
+    <%= form_with model:[@post, @post_comment], remote: true do |f| %>
+      <%= f.text_area :content, size:"100x3" %>
+      <%= f.submit "コメント送信" %>
+    <% end %>
   </div>
 </div>

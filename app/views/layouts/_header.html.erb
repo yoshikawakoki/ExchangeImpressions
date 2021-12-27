@@ -5,13 +5,14 @@
       <ul class="navbar-nav ml-md-auto align-items-center">
         <% if user_signed_in? %>
           <li><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-light btn-outline-secondary" %></li>
+          <li><%= link_to "ユーザー一覧", users_path, class: "btn btn-light btn-outline-secondary" %></li>
           <li><%= link_to "新規投稿", new_post_path, class:"btn btn-light btn-outline-secondary" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-light btn-outline-secondary" %></li>
         <% else %>
           <li><%= link_to "新規登録", new_user_registration_path, class:"btn btn-light btn-outline-secondary" %></li>
           <li><%= link_to "ログイン", new_user_session_path,class:"btn btn-light btn-outline-secondary" %></li>
         <% end %>
-          <li><input name="search" placeholder="search　🔍"></li>
+          <%#<li><input name="search" placeholder="search　🔍"></li>%>
       </ul>
     </div>
   </div>

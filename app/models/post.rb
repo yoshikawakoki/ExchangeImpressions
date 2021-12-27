@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :post_hashtag_relations
   has_many :hashtags, through: :post_hashtag_relations
   has_many :post_images, dependent: :destroy
+  has_many :post_comments
   accepts_attachments_for :post_images, attachment: :image
 
   def favorited_by?(user)

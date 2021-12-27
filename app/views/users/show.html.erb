@@ -2,11 +2,15 @@
   <div class="row">
     <div class="col-lg-7, mx-auto">
       <div>
-        <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
-        <%= @user.name %>
+        <%= link_to user_path(@user.id) do %>
+          <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
+          <%= @user.name %>
+        <% end %>
       </div>
       <div>
-        フォロー数　フォロワー数　投稿数
+        投稿数： <%= @user.posts.count %>
+        フォロー数: <%= link_to user_followings_path(@user.id) do %><%= @user.followings.count %><% end %>
+        フォロワー数: <%= link_to user_followers_path(@user.id) do %><%= @user.followers.count %><% end %>
       </div>
     </div>
   </div>
@@ -15,7 +19,7 @@
       <div class="col">
         <% post.post_images.first(1).each do |post_image| %>
           <%= link_to post_path(post.id) do %>
-            <%= attachment_image_tag post_image, :image, size: "250x250" %>
+            <%= attachment_image_tag post_image, :image, size: "300x300" %>
           <% end %>
         <% end %>
       </div>

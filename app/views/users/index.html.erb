@@ -2,13 +2,28 @@
   <div class="row">
     <div class="col-lg-7, mx-auto">
       <h2>ユーザー一覧</h2>
-      <table>
-        <%= @users.each do |user| %>
+      <table class="table">
+        <% @users.each do |user| %>
           <tr>
-            <th><%= attachment_image_tag user, :profile_image_id %></th>
-            <th><%= user.name %></th>
+            <th>
+              <%= link_to user_path(user.id) do %>
+                <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
+                <%= user.name %>
+              <% end %>
+            </th>
+            <th>投稿数： <%= user.posts.count %></th>
             <th>フォロー数</th>
             <th>フォロワー数</th>
+            <th>
+              <% if user == current_user %>
+              <% else %>
+                <% if current_user.following?(user) %>
+                  <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+                <% end %>
+              <% end %>
+            </th>
           </tr>
         <% end %>
       </table>

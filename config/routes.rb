@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   #ユーザー
   resources :users, only: [:index, :show, :edit, :update] do
     #フォロー、フォロワー
-    resources :relationships, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy]
     #フォロー一覧
     get "followings" => "relationships#followings", as: "followings"
     #フォロワー一覧
