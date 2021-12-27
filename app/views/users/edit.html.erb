@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-lg-7, mx-auto">
       <h2>ユーザー情報編集</h2>
-      <% form_with model: @user, local: true do |f| %>
+      <%= form_with model: @user, local: true do |f| %>
         <div class="field">
-          <%= attachment_field :profile_image_id %>
+          <%= f.attachment_field :profile_image %>
         </div>
         <div class="field">
           <%= f.label :name %>

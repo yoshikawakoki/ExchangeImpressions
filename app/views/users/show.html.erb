@@ -6,6 +6,9 @@
           <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
           <%= @user.name %>
         <% end %>
+        <% if @user == current_user %>
+          <%= link_to "edit profile", edit_user_path(current_user.id), class: "btn btn-light btn-outline-secondary" %>
+        <% end %>
       </div>
       <div>
         投稿数： <%= @user.posts.count %>
