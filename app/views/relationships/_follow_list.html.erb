@@ -11,6 +11,16 @@
           </td>
           <td>フォロー数: <%= link_to user_followings_path do %><%= user.followings.count %><% end %></td>
           <td>フォロワー数: <%= link_to user_followers_path do %><%= user.followers.count %><% end %></td>
+          <td>
+            <% if user == current_user %>
+            <% else %>
+              <% if current_user.following?(user) %>
+                <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn btn-primary ml-2" %>
+              <% else %>
+                <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-success ml-2" %>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
