@@ -11,12 +11,14 @@
   </head>
 
   <body>
-    <header class="border-bottom">
-      <%= render "layouts/header" %>
-    </header>
-    <%= yield %>
-    <footer class="border-top">
-      <%= render "layouts/footer" %>
-    </footer>
+    <div id="wrapper">
+      <header class="border-bottom">
+        <%= render "layouts/header" %>
+      </header>
+      <%= yield %>
+      <footer class="border-top bg-dark">
+        <%= render "layouts/footer" %>
+      </footer>
+    </div>
   </body>
 </html>
