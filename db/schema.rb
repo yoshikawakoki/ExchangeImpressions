@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 2021_12_26_074354) do
     t.integer "post_id"
     t.integer "visiter_id"
     t.integer "visited_id"
-    t.integer "comment_id"
+    t.integer "post_comment_id"
     t.string "action"
-    t.boolean "checked"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,8 +59,6 @@ ActiveRecord::Schema.define(version: 2021_12_26_074354) do
     t.integer "hashtag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hashtag_id"], name: "index_post_hashtag_relations_on_hashtag_id"
-    t.index ["post_id"], name: "index_post_hashtag_relations_on_post_id"
   end
 
   create_table "post_images", force: :cascade do |t|

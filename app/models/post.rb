@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :hashtags, through: :post_hashtag_relations
   has_many :post_images, dependent: :destroy
   has_many :post_comments
+  has_many :notifications, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
 
   def favorited_by?(user)
@@ -38,4 +39,40 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
+  
+  #いいねとコメントの通知メソッド
+  def create_notification_by(current_user)
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      visited_id: user_id,
+      action: "favorite"
+    )
+    notification.save if notification.valid?
+  end
+  
+  def create_notification_post_comment!(current_user, post_comment_id)
+    #自分以外にコメントしている人を抽出し、全員に通知を送る
+    temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
+    temp_ids.each do |temp_id|
+      sava_notification_post_comment!(current_user, post_comment_id, temp_id["user_id"])
+    end
+    #だれもコメントしている人がいない時、投稿者に通知を送る
+    save_notification_post_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
+  end
+  
+  def save_notification_post_comment!(current_user, post_comment_id, visited_id)
+    #コメントが複数回される可能性があるので、1つの投稿に複数回通知する
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      post_comment_id: post_comment_id,
+      visited_id: visited_id,
+      action: "post_comment"
+    )
+    #自分の投稿に対するコメントの場合は通知済みにする
+    if notification.visiter_id == notification.visited_id
+      notifiction.checked = true
+    end
+    notification.save if notification.valid?
+  end
+  
 end
