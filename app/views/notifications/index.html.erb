@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7">
+      <h2 class="text-center">通知</h2>
+      <%= link_to "全削除", user_notifications_destroy_all_path %>
+      <div class="mx-auto">
+        <% if @notifications.exists? %>
+          <%= render @notifications %>
+        <% else %>
+          <div>通知はありません</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

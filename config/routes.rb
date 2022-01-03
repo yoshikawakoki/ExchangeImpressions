@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     get "followings" => "relationships#followings", as: "followings"
     #フォロワー一覧
     get "followers" => "relationships#followers", as: "followers"
+    #通知
+    resources :notifications, only: [:index]
+    delete "/notifications/destroy_all" => "notifications#destroy_all"
   end
 
   #投稿
@@ -26,7 +29,6 @@ Rails.application.routes.draw do
   #ハッシュタグ
   get '/post/hashtag/:name', to: "posts#hashtag"
   
-  #通知
-  resources :notifications, only: [:index]
+  
   
 end
