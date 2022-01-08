@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
     @notifications = current_user.passive_notifications
     #@notificationの中でまだ確認していない(indexに一度も遷移していない)通知を抽出
     #indexを開いたらcheckedを全てtrueに変更
-    @notification.where(checked: false).each do |notification|
+    @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end
   end
