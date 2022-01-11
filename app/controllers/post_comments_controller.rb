@@ -8,7 +8,7 @@ class PostCommentsController < ApplicationController
     @post_comment_post = @post_comment.post
     @post_comment.save
     #通知
-    @post_comment_post.create_notification_comment!(current_user, @post_comment.id)
+    @post.create_notification_post_comment!(current_user, @post_comment.id)
   end
 
   private

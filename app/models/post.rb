@@ -54,7 +54,7 @@ class Post < ApplicationRecord
     #自分以外にコメントしている人を抽出し、全員に通知を送る
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
-      sava_notification_post_comment!(current_user, post_comment_id, temp_id["user_id"])
+      save_notification_post_comment!(current_user, post_comment_id, temp_id["user_id"])
     end
     #だれもコメントしている人がいない時、投稿者に通知を送る
     save_notification_post_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
@@ -70,7 +70,7 @@ class Post < ApplicationRecord
     )
     #自分の投稿に対するコメントの場合は通知済みにする
     if notification.visiter_id == notification.visited_id
-      notifiction.checked = true
+      notification.checked = true
     end
     notification.save if notification.valid?
   end
