@@ -21,6 +21,12 @@
             });
           </script>
         </tr>
+        <%# if @post.user == current_user %>
+          <tr>
+            <th><%#= link_to "編集する", edit_post_path(@post.id), class:"btn btn-light btn-outline-secondary" %></th>
+            <th></th>
+          </tr>
+        <%# end %>
       </table>
       <div>
         <% @post.post_images.each do |post_image| %>
@@ -37,6 +43,12 @@
         <%# いいねボタン %>
         <%= render "favorites/favorite", post: @post %>
       </div>
+      <% if @post.user == current_user %>
+        <div>
+          <%#投稿削除ボタン%>
+          <%= link_to "投稿を削除", post_path(@post.id), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="row">

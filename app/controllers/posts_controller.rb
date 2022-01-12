@@ -11,6 +11,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user == current_user
+      render :edit
+    else
+      redirect_to posts_path
+    end
   end
 
   def update
@@ -24,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post =Post.new(post_params)
+    @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.evaluation == nil
       @post.evaluation = 0
@@ -32,6 +37,12 @@ class PostsController < ApplicationController
     @post.save
     #if params[:post][:hashname] != nil
     redirect_to post_path(@post.id)
+  end
+  
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
   def hashtag
