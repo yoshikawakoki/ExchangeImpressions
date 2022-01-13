@@ -39,7 +39,7 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
-  
+
   #いいねとコメントの通知メソッド
   def create_notification_by(current_user)
     notification = current_user.active_notifications.new(
@@ -49,7 +49,7 @@ class Post < ApplicationRecord
     )
     notification.save if notification.valid?
   end
-  
+
   def create_notification_post_comment!(current_user, post_comment_id)
     #自分以外にコメントしている人を抽出し、全員に通知を送る
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
@@ -59,7 +59,7 @@ class Post < ApplicationRecord
     #だれもコメントしている人がいない時、投稿者に通知を送る
     save_notification_post_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
   end
-  
+
   def save_notification_post_comment!(current_user, post_comment_id, visited_id)
     #コメントが複数回される可能性があるので、1つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
@@ -74,5 +74,5 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  
+
 end
