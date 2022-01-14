@@ -6,9 +6,12 @@ class PostCommentsController < ApplicationController
     @post_comment.post_id = @post.id
     @post_comment.user_id = current_user.id
     @post_comment_post = @post_comment.post
-    @post_comment.save
-    #通知
-    @post.create_notification_post_comment!(current_user, @post_comment.id)
+    if @post_comment.save
+      #通知
+      @post.create_notification_post_comment!(current_user, @post_comment.id)
+    else
+      render "posts/show"
+    end
   end
 
   private
