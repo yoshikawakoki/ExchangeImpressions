@@ -2,6 +2,20 @@
   <div class="row, text-center">
     <h2>新規投稿</h2>
   </div>
+
+  <% if @post.errors.any? %>
+    <div class="row">
+      <div class="col-lg-7, mx-auto">
+        <%= @post.errors.count %>件のエラーが発生しました。
+        <% @post.errors.full_messages.each do |message| %>
+          <div class="text-danger">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <%= form_with model: @post, local:true do |f| %>
     <div class="row">
       <div class="col-lg-7, mx-auto">

@@ -34,9 +34,12 @@ class PostsController < ApplicationController
     if @post.evaluation == nil
       @post.evaluation = 0
     end
-    @post.save
-    #if params[:post][:hashname] != nil
-    redirect_to post_path(@post.id)
+    if @post.save
+      #if params[:post][:hashname] != nil
+      redirect_to post_path(@post.id)
+    else
+      render :new
+    end
   end
   
   def destroy

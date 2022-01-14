@@ -8,6 +8,10 @@ class Post < ApplicationRecord
   has_many :post_comments
   has_many :notifications, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
+  
+  validates :place, presence: true
+  validates :post_images_images, presence: true
+  validates :body, presence: true
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
