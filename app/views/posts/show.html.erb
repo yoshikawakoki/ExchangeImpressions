@@ -60,17 +60,10 @@
     </table>
   </div>
   <div class="row">
-    <% if @post.errors.any? %>
-      <div class="row">
-        <%= @post.errors.count %>件のエラーが発生しました。
-        <% @post.errors.full_messages.each do |message| %>
-          <div class="text-danger">
-            <%= message %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    
+    <div id="post_comments_error">
+      <%= render "layouts/errors", model: @post_comment %>
+    </div>
+
     <%= form_with model:[@post, @post_comment], local: false do |f| %>
       <%= f.text_area :content, size:"100x3", id: "post_comment_content" %>
       <%= f.submit "コメント送信" %>

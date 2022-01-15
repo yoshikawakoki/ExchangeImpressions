@@ -10,7 +10,8 @@ class PostCommentsController < ApplicationController
       #通知
       @post.create_notification_post_comment!(current_user, @post_comment.id)
     else
-      render "posts/show"
+      #comments/error.js.erbを呼び出す
+      render "error"
     end
   end
 
